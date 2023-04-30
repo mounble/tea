@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>鸳鸯点茶报告</title>
+	<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0 0;
+			padding: 0 0;
+		}
+		#main{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.shan {
+			width: 640px;
+			position: absolute;
+			opacity: 0;
+		}
+
+		.top {
+			position: absolute;
+			left: 65px;
+			top: 10%;
+			width: 160px;
+		}
+
+		.bottom {
+			position: absolute;
+			width: 85px;
+			left: 10%;
+			bottom: 20%;
+		}
+
+		.name {
+			color: #c58700;
+			font-family: Lisu;
+			font-size: 24px;
+		}
+
+		span {
+			display: inline-block;
+			height: auto;
+			text-align: center;
+		}
+		.content {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            margin-top: 0px;
+            margin-left: 0px;
+
+        }
+	</style>
+	<!-- <link rel="stylesheet" href="css/main.css" type="text/css"> -->
+	<script type="text/javascript">
+		window.onload = function () {
+			var shan1 = document.getElementById("shan1");
+			var shan2 = document.getElementById("shan2");
+			var shan3 = document.getElementById("shan3");
+			var i = parseInt(Math.random() * (4 - 1) + 1);
+			document.getElementById("shan" + i).style.opacity = 1;
+			shan1.style.opacity = 1
+			let name = document.getElementsByClassName('name')
+			for (let i = 0; i < name.length; i++) {
+				name[i].innerText = window.localStorage.getItem('txt')
+			}
+            //要转换为图片的dom对象
+            var element = document.querySelector('#main');
+            //要显示图片的img标签
+            var image = document.querySelector('#img');
+            //调用html2image方法
+            // image.style.opacity = 0
+            html2image(element, image);
+
+            function html2image(source, image) {
+                html2canvas(source).then(function (canvas) {
+                    var imageData = canvas.toDataURL(1);
+                    image.src = imageData;
+                });
+            }
+		}
+	</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="bg">
+			<img id="shan1" crossorigin="anonymous" class="shan" src="./contact/shan1.png">
+			<img id="shan2" class="shan" src="contact/shan2.png"> 
+			<img id="shan3" class="shan" src="contact/shan3.png"> 
+		</div>
+		<span class="name top"></span>
+		<span class="name bottom"></span>
+	</div>
+	<div class="content">
+        <img id="img" class="img" />
+    </div>
+</body>
+
+
+
+
+</html>

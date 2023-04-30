@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>介绍</title>
+</head>
+<style>
+	html,
+	body {
+		width: 640px;
+		height: 1030px;
+		margin: 0 auto;
+		overflow-x: hidden;
+	}
+
+	#main {
+		overflow: hidden;
+	}
+
+	#bg {
+		background-image: url("contact/bg3.jpg");
+	}
+
+	.door {
+		width: 640px;
+		position: absolute;
+		transition: all 2s ease;
+	}
+
+	#intro {
+		margin-top: -100px;
+		margin-left: -80px;
+		width: 640px;
+		height: 1030px;
+		opacity: 0;
+		transition: all 0.7s ease 0.3s;
+	}
+
+	#input {
+		position: absolute;
+	}
+
+	@font-face {
+		font-family: test;
+		src: url('res/AaMeiRenZhuanJianFan.ttf') format('ttf');
+	}
+
+	#txt {
+		width: 250px;
+		height: 40px;
+		line-height: 40px;
+		position: absolute;
+		top: 340px;
+		left: 240px;
+		opacity: 0;
+		font-size: 20px;
+		font-family: Lisu;
+	}
+
+	#ttf {
+		font-size: 20px;
+		font-family: Lisu;
+	}
+
+	#enter {
+		position: absolute;
+		top: 420px;
+		left: 50%;
+		margin-left: -40px;
+		width: 160px;
+		opacity: 0;
+	}
+
+	span {
+		position: absolute;
+		top: 47%;
+		left: 44%;
+	}
+</style>
+
+<body>
+	<div id="main">
+		<div id="bg">
+			<img id="left" class="door" src="contact/left.png">
+			<img id="right" class="door" src="contact/right.png">
+			<img id="intro" src="contact/intro.png">
+			<input type="text" name="请输入你的名字" id="txt">
+			<img id="enter" src="make/入肆.png">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var left = document.getElementById("left");
+	var right = document.getElementById("right");
+	var intro = document.getElementById("intro");
+	let enter = document.getElementById('enter')
+	let isTrue = true//一开始放在oninput的函数内部，
+	//发现onchange函数内部该变量始终没变化，应该是函数作用域的问题
+	window.onload = function () {
+		left.style.marginLeft = -400 + "px";
+		right.style.marginLeft = 400 + "px";
+		intro.style.opacity = 1;
+		intro.style.width = 600 + "px";
+		intro.style.marginLeft = 20 + "px";
+		var ospan = document.createElement("span");
+		//开始触屏
+		document.addEventListener("touchstart", function (e) {
+			intro.src = "make/入场券.png";
+			document.getElementById('bg').appendChild(ospan)
+			ospan.id = 'ttf'
+			const txt = document.getElementById('txt')
+			txt.onfocus = function () {
+				txt.oninput = function () {
+					let num = y = txt.value.length//输入文字的长度
+					let max = 6
+					if (num <= max) {
+						isTrue = true
+						ospan.style.color = '#72543a'
+						ospan.innerHTML = '还可以输入' + (max - num) + '个字'
+					}
+					else {
+						isTrue = false
+						console.log('111:' + isTrue)
+						ospan.style.color = '#d3271a'
+						ospan.innerHTML = '已超出限定字数'
+					}
+				}
+			}
+			txt.onchange = function () {
+				console.log('222:' + isTrue)
+				ospan.innerHTML = ''
+				let p = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")
+				if (p.test(txt.value)) {
+					ospan.style.color = '#d3271a'
+					ospan.innerHTML = '不能输入特殊字符'
+				}
+				else {
+					console.log(isTrue)
+					if (isTrue == true) {
+						enter.onclick = function () {
+							window.localStorage.setItem('txt', txt.value)
+							window.location.href = "index4.html"
+						}
+					}
+				}
+			}
+			// let setCookie = function(name,value){
+			// 	document.cookie = name + '=' + value
+			// }
+			// function set(){
+			// 	let name = document.getElementById('txt')
+			// 	setCookie('txt',name.value)
+			// 	location.href='index11.html'
+			// }
+			// location.href='index11.html'
+
+			document.getElementById("txt").style.opacity = 1;
+			document.getElementById("enter").style.opacity = 1;
+		}, false);
+	}
+</script>
+
+</html>

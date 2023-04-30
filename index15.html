@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>荷花点茶报告</title>
+		<style>
+			html,body {
+				width: 100%;
+				height:100%;
+				margin:0 0;
+				padding:0 0;
+			}
+			.he{
+				width:640px;
+				position:absolute;
+				opacity:0;
+			}
+		</style>
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+	</head>
+
+	<body>
+		<div id="main">
+			<div id="bg">
+				<img id="he1" class="he" src="contact/he1.png">
+				<img id="he2" class="he" src="contact/he2.png">
+				<img id="he3" class="he" src="contact/he3.png">
+				
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+			    var he1=document.getElementById("he1");
+			    var he2=document.getElementById("he2");
+			    var he3=document.getElementById("he3");
+			    var i=parseInt(Math.random()*(4-1)+1);
+			    document.getElementById("he"+i).style.opacity=1;	
+			
+			
+	 </script>
+</html>

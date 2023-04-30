@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport"
+		content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>介绍</title>
+</head>
+<style>
+	html,
+	body {
+		width: 1200px;
+		height: 1030px;
+		margin: 0 auto;
+		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	#main {
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
+	}
+
+
+	#bg::after {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		background-image: url("contact/bg3.jpg");
+		background-repeat: no-repeat;
+	}
+
+	.door {
+		width: 640px;
+		position: absolute;
+		z-index: 9;
+		transition: all 2s ease;
+	}
+
+	#house {
+		position: absolute;
+		left: 525px;
+		top: 165px;
+		z-index: 1;
+		width: 525px;
+		height: 500px;
+		animation: updowns 3.5s ease infinite;
+	}
+
+	@keyframes updowns {
+		0% {
+			margin-top: -8px;
+		}
+
+		50% {
+			margin-top: 5px;
+		}
+
+		100% {
+			margin-top: -8px;
+		}
+	}
+
+	#name {
+		position: absolute;
+		top: 530px;
+		left: 685px;
+		width: 6%;
+		z-index: 2;
+	}
+
+	#intro {
+		position: absolute;
+		margin-top: -255px;
+		margin-left: -1305px;
+		width:864px;
+		height: 1442px;
+		opacity: 0;
+		z-index: 2;
+		transition: all 0.7s ease 0.3s;
+	}
+
+	#input {
+		position: absolute;
+	}
+
+	@font-face {
+		font-family: test;
+		src: url('res/AaMeiRenZhuanJianFan.ttf') format('ttf');
+	}
+
+	#txt {
+		width: 270px;
+		height: 40px;
+		line-height: 40px;
+		position: absolute;
+		top: 380px;
+		left: 200px;
+		opacity: 0;
+		font-size: 20px;
+		font-family: Lisu;
+		z-index: 3;
+		transition: all 0.7s ease 0.3s;
+	}
+
+	#ttf {
+		font-size: 20px;
+		font-family: Lisu;
+	}
+
+	#enter {
+		position: absolute;
+		top: 520px;
+		left: 300px;
+		margin-left: -45px;
+		width: 160px;
+		opacity: 0;
+		z-index: 3;
+		transition: all 0.7s ease 0.3s;
+	}
+
+	span {
+		position: absolute;
+		top: 490px;
+		left: 300px;
+		z-index: 3;
+	}
+
+	.area {
+		position: absolute;
+		z-index: 99;
+		left: 310px;
+		top: 750px;
+		width: 110px;
+		height: 50px;
+		background-color: antiquewhite;
+		border: 1px solid black;
+	}
+</style>
+
+<body>
+	<div id="main">
+		<div id="bg">
+			<img id="left" class="door" src="contact/left.png">
+			<img id="right" class="door" src="contact/right.png">
+			<img src="contact/bg3.jpg" style="width: 100%;opacity: 0;" id="ba">
+			<img id="house" src="contact/house1.png" style="opacity: 0;" onclick="click(this)">
+			<img id="name" src="contact/chasi.png" style="opacity: 0;">
+			<img id="intro" src="contact/intro.png" onclick="click()">
+			<input type="text" name="请输入你的名字" id="txt">
+			<img id="enter" src="make/入肆.png">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var left = document.getElementById("left");
+	var right = document.getElementById("right");
+	let house = document.getElementById("house");
+	var intro = document.getElementById("intro");
+	let enter = document.getElementById('enter')
+	let area = document.getElementById("area")
+	let ba = document.getElementById("ba")
+	let name = document.getElementById("name")
+
+	let flag = true
+	let isTrue = true//一开始放在oninput的函数内部，
+	//发现onchange函数内部该变量始终没变化，应该是函数作用域的问题
+	let bg = document.getElementById("bg")
+	window.onload = function () {
+		left.style.marginLeft = -400 + "px";
+		right.style.marginLeft = 400 + "px";
+		intro.style.opacity = 1;
+		
+		intro.style.width = 864 + "px";
+		// intro.style.marginLeft = 20 + "px";
+		var ospan = document.createElement("span");
+		setTimeout(() => {
+		ba.style.opacity = 1
+		house.style.opacity = 1
+		name.style.opacity = 1
+		}, (700));
+		//开始触屏
+		intro.click = function () {
+			if (flag) {
+				intro.style.opacity = 0
+				flag = !flag
+			}
+		}
+		right.addEventListener("transitionend", function (e) {
+			right.style.display = "none"
+		})
+		document.addEventListener("touchstart", function (e) {
+			house.click = function () {
+				intro.src = "make/入场券.png"
+				intro.style.opacity = 1
+				
+				document.getElementById("txt").style.opacity = 1;
+				document.getElementById("enter").style.opacity = 1;
+			}
+
+			document.getElementById('bg').appendChild(ospan)
+			ospan.id = 'ttf'
+			const txt = document.getElementById('txt')
+			txt.onfocus = function () {
+				txt.oninput = function () {
+					let num = y = txt.value.length//输入文字的长度
+					let max = 6
+					if (num <= max) {
+						isTrue = true
+						ospan.style.color = '#72543a'
+						ospan.innerHTML = '还可以输入' + (max - num) + '个字'
+					}
+					else {
+						isTrue = false
+						ospan.style.color = '#d3271a'
+						ospan.innerHTML = '已超出限定字数'
+					}
+				}
+			}
+			txt.onchange = function () {
+				console.log('222:' + isTrue)
+				ospan.innerHTML = ''
+				let p = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")
+				if (p.test(txt.value)) {
+					ospan.style.color = '#d3271a'
+					ospan.innerHTML = '不能输入特殊字符'
+				}
+				else {
+					console.log(isTrue)
+					if (isTrue == true) {
+						enter.onclick = function () {
+							window.localStorage.setItem('txt', txt.value)
+							window.location.href = "index3.html"
+						}
+					}
+				}
+			}
+		}, false);
+	}
+</script>
+
+</html>

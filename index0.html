@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>加载中</title>
+	</head>
+		<style>
+			html,body {
+				width: 640px;
+				height:1030px;
+				margin:0 auto;
+				overflow-x: hidden;
+			}
+			#main{
+				overflow:hidden;
+			}
+			#bg{
+				width:640px;
+				height:1030px;
+				background-image: url('contact/bg2.jpg');
+				background-repeat: no-repeat;
+				background-size:cover;
+			}
+			.img{
+				width:640px;
+				position:absolute;
+			}
+			#ye{
+				margin-left:450px;
+				animation:action 3.4s linear;
+				animation-fill-mode: forwards;
+			}
+			@keyframes action {
+				0%{margin-left:0px}
+				10%{margin-left:50px}
+				20%{margin-left:70px}
+				30%{margin-left:100px}
+				40%{margin-left:168px}
+				50%{margin-left:200px}
+				60%{margin-left:247px}
+				70%{margin-left:297px}
+				80%{margin-left:345px}
+				90%{margin-left:375px}
+				100%{margin-left:450px}
+			}
+			#one,#two,#three,#four,#five,#six,#seven,#eight,#nine,#hundred{
+				opacity:0;
+				margin-left:0px;
+			}
+			#zi{
+				animation:opa 2s ease;
+			}
+			@keyframes opa{
+				0%{opacity:0}
+				50%{opacity:0.5}
+				100%{opacity:1}
+			}
+		</style>
+	<body>
+		<div id="main">
+			<div id="bg">
+				<img id="jing" class="img" src="contact/jing.png">
+				<img id="tiao" class="img" src="contact/tiao.png">
+				<img id="ye" class="img" src="contact/ye.png">
+				<img id="one" class="img" src="contact/one.png">
+				<img id="two" class="img" src="contact/two.png">
+				<img id="three" class="img" src="contact/three.png">
+				<img id="four" class="img" src="contact/four.png">
+				<img id="five" class="img" src="contact/five.png">
+				<img id="six" class="img" src="contact/six.png">
+				<img id="seven" class="img" src="contact/seven.png">
+				<img id="eight" class="img" src="contact/eight.png">
+				<img id="nine" class="img" src="contact/nine.png">
+				<img id="hundred" class="img" src="contact/hundred.png">
+				<img id="zi" class="img" src="contact/zi.png">
+			</div>
+		</div>
+    </body>
+	<script type="text/javascript">
+		var jing=document.getElementById("jing");
+		var one=document.getElementById("one");
+		var two=document.getElementById("two");
+		var three=document.getElementById("three");
+		var four=document.getElementById("four");
+		var five=document.getElementById("five");
+		var six=document.getElementById("six");
+		var seven=document.getElementById("seven");
+		var eight=document.getElementById("eight");
+		var nine=document.getElementById("nine");
+		var hundred=document.getElementById("hundred");
+		window.onload=function(){
+			one.style.opacity=1;
+			one.style.transition="all 0.2s linear";
+			one.style.marginLeft=37+"px";
+			one.addEventListener("transitionend",function(){
+				one.style.display="none";
+				two.style.opacity=1;
+				two.style.transition="all 0.2s linear";
+				two.style.marginLeft=37+"px";
+			});
+			two.addEventListener("transitionend",function(){
+				two.style.display="none";
+				three.style.opacity=1;
+				three.style.transition="all 0.2s linear 0.1s";
+				three.style.marginLeft=37+"px";
+			});
+			three.addEventListener("transitionend",function(){
+				three.style.display="none";
+				four.style.transition="all 0.3s ease";
+				four.style.opacity=1;
+				four.style.marginLeft=50+"px";
+			});
+			four.addEventListener("transitionend",function(){
+				four.style.display="none";
+				five.style.transition="all 0.3s ease";
+				five.style.opacity=1;
+				five.style.marginLeft=50+"px";
+			});
+			five.addEventListener("transitionend",function(){
+				five.style.display="none";
+				six.style.transition="all 0.4s ease";
+				six.style.opacity=1;
+				six.style.marginLeft=50+"px";
+			});
+			six.addEventListener("transitionend",function(){
+				six.style.display="none";
+				seven.style.transition="all 0.4s ease";
+				seven.style.opacity=1;
+				seven.style.marginLeft=50+"px";
+			});
+			seven.addEventListener("transitionend",function(){
+				seven.style.display="none";
+				eight.style.transition="all 0.2s ease 0.1s";
+				eight.style.opacity=1;
+				eight.style.marginLeft=50+"px";
+			});
+			eight.addEventListener("transitionend",function(){
+				eight.style.display="none";
+				nine.style.transition="all 0.2s ease 0.1s";
+				nine.style.opacity=1;
+				nine.style.marginLeft=50+"px";
+			});
+			nine.addEventListener("transitionend",function(){
+				nine.style.display="none";
+				hundred.style.transition="all 0.2s ease";
+				hundred.style.opacity=1;
+				hunderd.style.marginLeft=50+"px";
+			});
+			hundred.addEventListener("transitionend",function(){//开始触屏
+			
+				window.location.href = 'index1.html';//触屏开始的y坐标点
+			
+			});
+			
+		}
+	</script>
+</html>

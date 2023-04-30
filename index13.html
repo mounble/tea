@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<title>选择图样</title>
+		<style>
+			html,body {
+				width: 100%;
+				height:100%;
+				margin:0;
+				padding:0;
+			}
+			#main{							
+				width:640px;
+				height:1030px;		
+				background-image: url("res/背景图.jpg");
+				background-repeat:no-repeat;
+				background-size:contain;
+				position:absolute;
+			}
+			
+			#next{
+				float:right;
+				width:120px;
+			}
+			#spt{
+				width:70px;
+				position:absolute;
+				top:560px;
+				right:310px;
+				z-index:1;
+			}
+			/*茶匙浮动效果*/
+			#sp{
+				position:absolute;
+				top:565px;
+				left:100px;
+				width:500px;
+				z-index:2;
+				animation:spUpdown 1s alternate infinite;
+				-webkit-animation: spUpdown 1s alternate infinite;
+			}
+			@keyframes spUpdown {
+			    from {
+			        margin-top: 80px;
+			    }
+			    to {
+			        margin-top: 70px;
+			    }
+			}     
+			@-webkit-keyframes spUpdown {
+			    from {
+			        margin-top: 80px;
+			    }
+			    to {
+			        margin-top: 70px;
+			    }
+			}
+			.option{
+				    margin-top:860px;
+					width:640px;
+			        overflow:hidden;
+					position:absolute;
+			}
+			.box{
+				display:flex;
+				overflow-y: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+			.box1{
+				margin:10px 27px;
+			}
+			/*隐藏滚动条*/
+			.box::-webkit-scrollbar{
+			    display: none;
+			}
+			#show1,#show2,#show3,#show4,#show5{
+				width:150px;
+				animation:large 3s linear infinite;
+			}
+			@keyframes large{
+				0%{width:150px}
+				50%{width:153px}
+				100%{width:150px}
+			}
+			#circle{
+				position:absolute;
+				margin-top: 100px;
+				margin-left: 42px;
+				width:550px;
+				height:530px;
+			}
+			.tip{
+				width:640px;
+				position:absolute;
+				opacity:0;
+			}
+			@keyframes tip{
+				0%{opacity:0}
+				25%{opacity:0.5}
+				50%{opacity:1}
+				75%{opacity:0.5}
+				100%{opacity:0}
+			}
+			@keyframes tip1{
+				0%{opacity:0}
+				100%{opacity:1}
+			}
+			#end{
+				width:110px;
+				float:right;
+			}
+			#shangse img{
+				width:640px;
+				position:absolute;
+				opacity:0;
+				transition:all 2s linear;
+			}
+			@keyframes hide{
+				0%{opacity:1}
+				100%{opacity:0}
+			}
+			#huang{
+				width:156px;
+				position:absolute;
+				z-index:20;
+				margin-top:8px;
+				margin-left:24px;
+			}
+			#show1{
+				z-index:21;
+			}
+		</style>
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+	</head>
+
+	<body>
+		<div id="main">
+		    <img id="end" src="res/完成.png">
+			<div id="shangse">
+				<img id="he1" src="res/荷花1.png">
+				<img id="he2" src="res/荷花2.png">
+				<img id="he3" src="res/荷花3.png">
+				<img id="dan1" src="res/丹1.png">
+				<img id="dan2" src="res/丹2.png">
+				<img id="dan3" src="res/丹3.png">
+				<img id="yuan1" src="res/鸳鸯1.png">
+				<img id="yuan2" src="res/鸳鸯2.png">
+				<img id="yuan3" src="res/鸳鸯3.png">
+				<img id="chi1" src="res/池塘1.png">
+				<img id="chi2" src="res/池塘2.png">
+				<img id="chi3" src="res/池塘3.png">
+				<img id="shan1" src="res/山水1.png">
+				<img id="shan2" src="res/山水2.png">
+				<img id="shan3" src="res/山水3.png">
+			</div>
+			
+			<img id="take"  class="tip" src="contact/take.png">
+			<img id="select"  class="tip" src="contact/select.png">
+			<img id="welcome"  class="tip" src="contact/welcome.png">
+			<img id="finish" class="tip" src="contact/finish.png">
+			<div id="circle"></div>
+			<img id="sp" src="res/茶匙.png">
+			<div class="option">
+				<img id="huang" src="res/黄色边框.png">
+				<div class="box">
+					<div class="box1" id="box1"><img  id="show1" src="res/荷花图样.png"  ></div>
+					<div class="box1" id="box2"><img  id="show2" src="res/丹顶鹤图样.png" ></div>
+					<div class="box1" id="box3"><img  id="show3" src="res/鸳鸯图样.png"  ></div>
+					<div class="box1" id="box4"><img  id="show4" src="res/池塘图样.png"  ></div>
+					<div class="box1" id="box5"><img  id="show5" src="res/山水图样.png"  ></div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+        window.onload=function(){
+			 
+		     var welcome=document.getElementById("welcome");
+			 var select=document.getElementById("select");
+			 var take=document.getElementById("take");
+			 var finish=document.getElementById("finish");
+			 welcome.style.animation="tip 1.5s ease-in-out";
+			 welcome.addEventListener("animationend",function(){
+				 select.style.animation="tip 1.5s ease";
+			 });
+			 select.addEventListener("animationend",function(){
+			 	take.style.transition="all 1s ease";
+				take.style.opacity=1;
+			 });
+			 
+		var circle=document.getElementById("circle");
+		var draft1=document.createElement("img");
+		var draft2=document.createElement("img");
+		var draft3=document.createElement("img");
+		var draft4=document.createElement("img");
+		var draft5=document.createElement("img");
+		document.getElementById("show1").onclick=function(){
+			document.getElementById("dan1").style.opacity=0;
+			document.getElementById("dan2").style.opacity=0;
+			document.getElementById("dan3").style.opacity=0;
+			document.getElementById("yuan1").style.opacity=0;
+			document.getElementById("yuan2").style.opacity=0;
+			document.getElementById("yuan3").style.opacity=0;
+			document.getElementById("chi1").style.opacity=0;
+			document.getElementById("chi2").style.opacity=0;
+			document.getElementById("chi3").style.opacity=0;
+			document.getElementById("shan1").style.opacity=0;
+			document.getElementById("shan2").style.opacity=0;
+			document.getElementById("shan3").style.opacity=0;
+			draft1.style.display="block";
+			draft2.style.display="none";
+			draft3.style.display="none";
+			draft4.style.display="none";
+			draft5.style.display="none";
+			draft1.src="res/荷花线稿.png";
+			draft1.style.position="absolute";
+			draft1.style.top=72+"px";
+			draft1.style.left=17+"px";
+			draft1.style.width=495+"px";
+			circle.appendChild(draft1);	
+		}
+		document.getElementById("show2").onclick=function(){
+			document.getElementById("he1").style.opacity=0;
+			document.getElementById("he2").style.opacity=0;
+			document.getElementById("he3").style.opacity=0;
+			document.getElementById("yuan1").style.opacity=0;
+			document.getElementById("yuan2").style.opacity=0;
+			document.getElementById("yuan3").style.opacity=0;
+			document.getElementById("chi1").style.opacity=0;
+			document.getElementById("chi2").style.opacity=0;
+			document.getElementById("chi3").style.opacity=0;
+			document.getElementById("shan1").style.opacity=0;
+			document.getElementById("shan2").style.opacity=0;
+			document.getElementById("shan3").style.opacity=0;
+			draft1.style.display="none";
+			draft2.style.display="block";
+			draft3.style.display="none";
+			draft4.style.display="none";
+			draft5.style.display="none";
+			draft2.src="res/丹顶鹤线稿.png";
+			draft2.style.position="absolute";
+			draft2.style.left=59+"px";
+			draft2.style.top=58+"px";
+			draft2.style.width=480+"px";
+			circle.appendChild(draft2);
+		}
+	    document.getElementById("show3").onclick=function(){
+			document.getElementById("he1").style.opacity=0;
+			document.getElementById("he2").style.opacity=0;
+			document.getElementById("he3").style.opacity=0;
+			document.getElementById("dan1").style.opacity=0;
+			document.getElementById("dan2").style.opacity=0;
+			document.getElementById("dan3").style.opacity=0;
+			document.getElementById("chi1").style.opacity=0;
+			document.getElementById("chi2").style.opacity=0;
+			document.getElementById("chi3").style.opacity=0;
+			document.getElementById("shan1").style.opacity=0;
+			document.getElementById("shan2").style.opacity=0;
+			document.getElementById("shan3").style.opacity=0;
+	    	draft1.style.display="none";
+	    	draft2.style.display="none";
+	    	draft3.style.display="block";
+	    	draft4.style.display="none";
+	    	draft5.style.display="none";
+	    	draft3.src="res/鸳鸯线稿.png";
+	    	draft3.style.position="absolute";
+	    	draft3.style.top=13+"px";
+			draft3.style.left=62+"px";
+	    	draft3.style.width=440+"px";
+	    	circle.appendChild(draft3);
+	    }
+		document.getElementById("show4").onclick=function(){
+			document.getElementById("he1").style.opacity=0;
+			document.getElementById("he2").style.opacity=0;
+			document.getElementById("he3").style.opacity=0;
+			document.getElementById("dan1").style.opacity=0;
+			document.getElementById("dan2").style.opacity=0;
+			document.getElementById("dan3").style.opacity=0;
+			document.getElementById("yuan1").style.opacity=0;
+			document.getElementById("yuan2").style.opacity=0;
+			document.getElementById("yuan3").style.opacity=0;
+			document.getElementById("shan1").style.opacity=0;
+			document.getElementById("shan2").style.opacity=0;
+			document.getElementById("shan3").style.opacity=0;
+			draft1.style.display="none";
+			draft2.style.display="none";
+			draft3.style.display="none";
+			draft4.style.display="block";
+			draft5.style.display="none";
+			draft4.src="res/池塘线稿.png";
+			draft4.style.position="absolute";
+			draft4.style.top=42+"px";
+			draft4.style.left=44+"px";
+			draft4.style.width=480+"px";
+			circle.appendChild(draft4);
+		}
+		document.getElementById("show5").onclick=function(){
+			document.getElementById("he1").style.opacity=0;
+			document.getElementById("he2").style.opacity=0;
+			document.getElementById("he3").style.opacity=0;
+			document.getElementById("dan1").style.opacity=0;
+			document.getElementById("dan2").style.opacity=0;
+			document.getElementById("dan3").style.opacity=0;
+			document.getElementById("yuan1").style.opacity=0;
+			document.getElementById("yuan2").style.opacity=0;
+			document.getElementById("yuan3").style.opacity=0;
+			document.getElementById("chi1").style.opacity=0;
+			document.getElementById("chi2").style.opacity=0;
+			document.getElementById("chi3").style.opacity=0;
+			draft1.style.display="none";
+			draft2.style.display="none";
+			draft3.style.display="none";
+			draft4.style.display="none";
+			draft5.style.display="block";
+			draft5.src="res/山水线稿.png";
+			draft5.style.position="absolute";
+			draft5.style.top=42+"px";
+			draft5.style.left=19+"px";
+			draft5.style.width=517+"px";
+			circle.appendChild(draft5);
+		}
+		var sp = document.getElementById('sp');
+		sp.addEventListener('touchstart', function(e) {
+		var x = e.targetTouches[0].pageX - this.offsetLeft;
+	    var y = e.targetTouches[0].pageY - this.offsetTop;
+			
+		    document.addEventListener('touchmove', move);
+		    function move(e) {
+				document.body.style.overflow="hidden";
+		        sp.style.left = e.targetTouches[0].pageX - x + 'px';
+		        sp.style.top = e.targetTouches[0].pageY - y + 'px';
+				if(sp.style.top==150+'px' && draft1.style.display=="block"){
+					document.getElementById("he1").style.opacity=1;
+				}
+				if(sp.style.top==170+'px'  && draft1.style.display=="block"){
+					document.getElementById("he2").style.opacity=1;
+				}
+				if(sp.style.top==180+'px'  && draft1.style.display=="block"){
+					document.getElementById("he3").style.opacity=1;
+				}
+				if(sp.style.top==150+'px' && draft2.style.display=="block"){
+					document.getElementById("dan1").style.opacity=1;
+				}
+				if(sp.style.top==170+'px'  && draft2.style.display=="block"){
+					document.getElementById("dan2").style.opacity=1;
+				}
+				if(sp.style.top==180+'px'  && draft2.style.display=="block"){
+					document.getElementById("dan3").style.opacity=1;
+				}
+				if(sp.style.top==150+'px' && draft3.style.display=="block"){
+					document.getElementById("yuan1").style.opacity=1;
+				}
+				if(sp.style.top==170+'px'  && draft3.style.display=="block"){
+					document.getElementById("yuan2").style.opacity=1;
+				}
+				if(sp.style.top==180+'px'  && draft3.style.display=="block"){
+					document.getElementById("yuan3").style.opacity=1;
+				}
+				if(sp.style.top==150+'px' && draft4.style.display=="block"){
+					document.getElementById("chi1").style.opacity=1;
+				}
+				if(sp.style.top==170+'px'  && draft4.style.display=="block"){
+					document.getElementById("chi2").style.opacity=1;
+				}
+				if(sp.style.top==180+'px'  && draft4.style.display=="block"){
+					document.getElementById("chi3").style.opacity=1;
+				}
+				if(sp.style.top==150+'px' && draft5.style.display=="block"){
+					document.getElementById("shan1").style.opacity=1;
+				}
+				if(sp.style.top==170+'px'  && draft5.style.display=="block"){
+					document.getElementById("shan2").style.opacity=1;
+				}
+				if(sp.style.top==180+'px'  && draft5.style.display=="block"){
+					document.getElementById("shan3").style.opacity=1;
+				}
+		    }
+		    document.addEventListener("touchcancel",function(){
+		    	sp.style.top=565+"px";
+		    	sp.style.left=100+"px";
+		    })
+		    document.addEventListener('touchend', function(){
+				document.body.style.overflow="auto";
+		        sp.style.top=565+"px";
+		        sp.style.left=100+"px";
+			   	take.style.opacity=0;
+			   	finish.style.transition="all 2s ease";
+			   	finish.style.opacity=1;
+				if(document.getElementById("he1").style.opacity==1 && document.getElementById("he2").style.opacity==1 && document.getElementById("he3").style.opacity==1){
+					window.location.href="index15.html";
+			    }
+				if(document.getElementById("dan1").style.opacity==1 && document.getElementById("dan2").style.opacity==1 && document.getElementById("dan3").style.opacity==1){
+					window.location.href="index16.html";
+				}
+				if(document.getElementById("yuan1").style.opacity==1 && document.getElementById("yuan2").style.opacity==1 && document.getElementById("yuan3").style.opacity==1){
+					window.location.href="index17.html";
+				}
+				if(document.getElementById("chi1").style.opacity==1 && document.getElementById("chi2").style.opacity==1 && document.getElementById("chi3").style.opacity==1){
+					window.location.href="index18.html";
+				}
+				if(document.getElementById("shan1").style.opacity==1 && document.getElementById("shan2").style.opacity==1 && document.getElementById("shan3").style.opacity==1){
+					window.location.href="index19.html";
+				}
+			});
+			
+		})
+		
+		}
+		
+	 </script>
+</html>

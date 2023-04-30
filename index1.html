@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>点茶韵</title>
+	</head>
+	   
+		<style>
+			html,body {
+				width: 640px;
+				height:1030px;
+				margin:0 auto;
+				overflow-x: hidden;
+			}
+			#main{
+				overflow:hidden;
+			}
+			#bg{
+				width:640px;
+				height:1030px;
+				background-image: url('contact/bg1.png');
+				background-repeat: no-repeat;
+				background-size:cover;
+			}
+			#zhui{
+				width:640px;
+				position:relative;
+				transition:all 4s ease;
+				animation:float 4s ease infinite;
+			}
+			@keyframes float{
+				0%{margin-top:0px}
+				25%{margin-top:4px}
+				50%{margin-top:8px}
+				75%{margin-top:4px}
+				100%{margin-top:0px}
+			}
+			#xiahua{
+				width:640px;
+		        position:absolute;
+			}
+			#tubiao{
+				width:640px;
+			    position:absolute;
+			}
+			#gua{
+				width:640px;
+				position:absolute;
+				z-index:11;
+				margin-top:-700px;
+				animation:hua 1.5s ease infinite;
+			}
+			@keyframes hua{
+				0%{margin-top:-1px}
+				50%{margin-top:17px}
+				100%{margin-top:0px}
+			}
+			@keyframes enter{
+				0%{margin-top:12px}
+				100%{margin-top:40px}
+			}
+			.text{
+				width:640px;
+				position:absolute;
+				margin-left: 360px;
+				animation:dian 0.7s ease;
+				animation-fill-mode:forwards;
+			}
+			#dian1{
+				animation:dian 0.7s ease 0.5s;
+				animation-fill-mode:forwards;
+			}
+			#cha{
+				animation:dian 0.7s ease 1.0s;
+				animation-fill-mode:forwards;
+			}
+			#cha2{
+				animation:dian 0.7s ease 1.5s;
+				animation-fill-mode:forwards;
+			}
+			#yun{
+				animation:dian 0.7s ease 2.0s;
+				animation-fill-mode:forwards;
+			}
+			@keyframes dian{
+				0%{margin-left: 300px}
+				100%{margin-left: 0px}
+			}
+			#musicon{
+				width:47px;
+				margin-top: 52px;
+				margin-left: 50px;
+				position:absolute;
+				animation:rotate 2s linear infinite;
+			}
+			@keyframes rotate{
+				   100%{transform:rotatez(-360deg)}
+			}
+			#musicoff{
+				width:37px;
+				margin-top: 58px;
+				margin-left: 54px;
+				position:absolute;
+				animation:rotate 2s linear infinite;
+				display:none;
+			}
+			.door{
+				width:640px;
+				position:absolute;
+				transition:all 2s ease;
+				z-index:12;
+			}
+			#left{
+				margin-left:-400px;
+			}
+			#right{
+				margin-left:400px;
+			}
+		</style>
+	<body>
+		<div id="main">
+			<div id="bg">
+				<img id="left" class="door" src="contact/left.png">
+				<img id="right" class="door" src="contact/right.png">
+				<img id="gua" src="contact/gua.png">
+				<img id="musicon" src="contact/musicon.png">
+				<img id="musicoff" src="contact/musicoff.png">
+				<img id="dian" class="text" src="contact/dain.png">
+				<img id="dian1" class="text" src="contact/dian1.png">
+				<img id="cha" class="text" src="contact/cha.png">
+				<img id="cha2" class="text" src="contact/cha2.png">
+				<img id="yun" class="text" src="contact/yun.png">
+				<img id="xiahua" src="contact/xiahua.png">
+				<img id="tubiao" src="contact/tubiao.png">
+				<img id="zhui" src="contact/dianzhui.png">
+			</div>
+		</div>
+    </body>
+	<script type="text/javascript">
+		var gua=document.getElementById("gua");
+		var text=document.getElementsByClassName("text");
+		var left=document.getElementById("left");
+		var right=document.getElementById("right");
+		window.onload=function(){
+			gua.style.transition="all 1.5s ease";
+			gua.style.marginTop=-2+"px";
+			
+			var startY;
+			//开始触屏
+			document.addEventListener("touchstart",function(e){
+				startY = e.changedTouches[0].pageY;//触屏开始的y坐标点
+			},false);
+			//触屏移动
+			document.addEventListener('touchmove',function (e) {
+			    var endY;
+			    endY = e.changedTouches[0].pageY;//触屏结束的y坐标点
+				if(endY < startY){
+					gua.style.animationPlayState="running";
+				} else if(endY > startY){
+			        gua.style.animation="enter 1.2s ease";
+					gua.style.animationFillMode="forwards";
+					gua.addEventListener("animationend",function(){
+						left.style.marginLeft=0+"px";
+						right.style.marginLeft=0+"px";
+					})
+					document.getElementById("left").addEventListener("transitionend",function(){
+						window.location.href = "index2.html";
+					})
+			    }
+			},false);		
+		}
+	</script>
+</html>

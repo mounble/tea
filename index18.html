@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>鸳鸯点茶报告</title>
+		<style>
+			html,body {
+				width: 100%;
+				height:100%;
+				margin:0 0;
+				padding:0 0;
+			}
+			.chi{
+				width:640px;
+				position:absolute;
+				opacity:0;
+			}
+		</style>
+		<link rel="stylesheet" href="css/main.css" type="text/css">
+	</head>
+
+	<body>
+		<div id="main">
+			<div id="bg">
+				<img id="chi1" class="chi" src="contact/chi1.png">
+			    <img id="chi2" class="chi" src="contact/chi2.png">
+			    <img id="chi3" class="chi" src="contact/chi3.png">
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		window.onload=function(){
+			var chi1=document.getElementById("chi1");
+			var chi2=document.getElementById("chi2");
+			var chi3=document.getElementById("chi3");
+			var i=parseInt(Math.random()*(4-1)+1);
+			document.getElementById("chi"+i).style.opacity=1;
+				
+		}
+	 </script>
+</html>
